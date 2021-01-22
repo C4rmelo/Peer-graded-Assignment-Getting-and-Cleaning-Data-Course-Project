@@ -16,7 +16,7 @@
 
 - "Labels": chr, indicates the activity name, "Walking", "Laying", "Standing", and so on; from the original files "activity_labels.txt";
 
--"tBodyAcc-mean()-X", "tBodyAcc-mean()-Y", "tBodyAcc-mean()-Z" , "tBodyAcc-std()-X", and so on: num, 79 variables (columns), the measurements on the mean and standard deviation;
+- "tBodyAcc-mean()-X", "tBodyAcc-mean()-Y", "tBodyAcc-mean()-Z" , "tBodyAcc-std()-X", and so on: num, 79 variables (columns), the measurements on the mean and standard deviation;
 
 3) Dataset "IndependentTidyData" (1715 variables, 180 obs): data set with the average of each variable for each activity and each subject of the dataset "All.Data":
 
