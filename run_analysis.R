@@ -126,11 +126,10 @@ colnames(subTrain)="Subjects"
 
 
 ##Created two datasets ("All.Test" and "All.Train"), one for the Test set and one for the Train set,
-#joining the following variables: subTest, Ytest.name, Xtest and all the inertial signals.And the same for the Train files:
+#joining the following variables: subTest, Ytest.name, Xtest.name, Ytest, Ytrain:
 
-All.Test<-cbind(subTest,YTest.name,XTest,bodyAccTest.X,bodyAccTest.Y,bodyAccTest.Z, bodyGyroTest.X,bodyGyroTest.Y,bodyGyroTest.Z,totalAccTest.X,totalAccTest.Y,totalAccTest.Z)
-All.Train<-cbind(subTrain,YTrain.name,XTrain,bodyAccTrain.X,bodyAccTrain.Y,bodyAccTrain.Z, bodyGyroTrain.X,bodyGyroTrain.Y,bodyGyroTrain.Z,totalAccTrain.X,totalAccTrain.Y,totalAccTrain.Z)
-
+All.Test<-cbind(subTest,YTest.name,XTest)
+All.Train<-cbind(subTrain,YTrain.name,XTrain)
 
 ##Unifying "All.Test" and "All.Train" in one dataset sorting it by the variable "Subjects" and the variable "Labels":
 
@@ -142,19 +141,19 @@ All.Data<-arrange(Messy.All.Data, Subjects,Labels) #FINAL DATASET
 
 ### Point 2: Extracts only the measurements on the mean and standard deviation for each measurement. 
 
-columnSelected <-grep("mean|std", names(All.Data)) 
+columnSelected <-grep("mean|std|Mean", names(All.Data)) 
 MeanStandarddeviation <-All.Data[,c(1,2,columnSelected)]
 
 
 ###: Point 5: Creates a second, independent tidy data set with the average of each variable for each activity and each subject:
 
-##Computing the averege of each variable for each activity and each subject:
+##Computing the average of each variable for each activity and each subject:
 
-All.Data<-data.frame(All.Data)
+MeanStandarddeviation<-data.frame(MeanStandarddeviation)
 NewData<-data.frame() 
-for(i in All.Data$Subjects[!duplicated(All.Data[1])]){
+for(i in MeanStandarddeviation$Subjects[!duplicated(MeanStandarddeviation[1])]){
   for(j in activity_labels[,2]){ 
-    a<-filter(All.Data, Subjects==i, Labels == j)
+    a<-filter(MeanStandarddeviation, Subjects==i, Labels == j)
     b<-sapply(a[,-(1:2)], mean) 
     b<-as.data.frame(t(b)) 
     NewData<-rbind(NewData, b)}} 
@@ -162,7 +161,7 @@ for(i in All.Data$Subjects[!duplicated(All.Data[1])]){
 ##Get the first two columns "Subjects" and "Labels" (of which obviously I have not calculated the average :)) :
 
 TwoColumns <- data.frame()
-for(i in All.Data$Subjects[!duplicated(All.Data[1])]){
+for(i in MeanStandarddeviation$Subjects[!duplicated(MeanStandarddeviation[1])]){
   for(j in activity_labels[,2]){
     TwoColumns <- rbind(TwoColumns,cbind(i,j))}}
 names(TwoColumns)[1] <- "Subjects" 
@@ -171,7 +170,7 @@ names(TwoColumns)[2] <- "Labels"
 IndependentTidyData <-cbind(TwoColumns,NewData) #The final dataset required in the point 5.
 
 
-write.table(IndependentTidyData,row.name=FALSE,file="Assignment Getting and Cleaning Data.txt")
+write.table(IndependentTidyData,row.name=FALSE,file="Assignment Getting and Cleaning Data(dataset point 5).txt")
 
 
-###Finish, thank you!###
+###Finish, thank you###
