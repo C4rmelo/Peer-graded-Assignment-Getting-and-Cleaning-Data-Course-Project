@@ -24,9 +24,7 @@
 
 - "tBodyAcc.mean...X", "tBodyAcc.mean...Y", "tBodyAcc.mean...Z", "tBodyAcc.std...X", and so on: num,  561 variables (columns), from "X_train.txt" and "X_test.txt" with labels from "features.txt"; the MEAN of the previous and relative variables;
 
-LIST:
-str(IndependentTidyData)
-180 obs. of  88 variables:
+
  $ Subjects                            : chr  "1" "1" "1" "1" ...
  $ Labels                              : chr  "WALKING" "WALKING_UPSTAIRS" "WALKING_DOWNSTAIRS" "SITTING" ...
  $ tBodyAcc.mean...X                   : num  0.277 0.255 0.289 0.261 0.279 ...
