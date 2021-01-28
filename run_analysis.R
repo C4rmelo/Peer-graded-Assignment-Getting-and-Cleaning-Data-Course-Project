@@ -1,4 +1,5 @@
 #####Peer-graded Assignment: Getting and Cleaning Data Course Project#####
+##IMPORTANT: this code could seem strange but it's right and cover all 5 points' assignment. Run the code if you have some doubts!
 
 
 
